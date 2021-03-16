@@ -4,33 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./node_modules/prismjs/themes/prism-tomorrow.css">
-    <!-- <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet" /> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="//codefence.io/codefence.css" rel="stylesheet">
     <title>Endianness</title>
 </head>
 <body class="bg-dark text-white">
 
     <h1>Endianness</h1>
 
-    <pre><code class="language-clike">
+    <pre><code-fence lang="c">
+<textarea vue-slot="code">
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 int main() {
     int *p_x = (int *) malloc(1*sizeof(int));
-    scanf("%d",p_x);
+    // scanf("%d",p_x);
+    (*p_x) = -3;
 
     for(int i=0;i&lt;4;i++) {
-        unsigned char *one_byte_slice =&gt; ( ((unsigned char *)(p_x)) + i );
+        unsigned char *one_byte_slice = ( ((unsigned char *)(p_x)) + i );
         printf("slice : %d , value : %hhx\n",i,*one_byte_slice);
     }
     return 0;
 }
-        </code></pre>
+</textarea>
+        </code-fence></pre>
 
     <h2>Output</h2>
-    <pre><code class="language-markup">
+    <pre><code class="plaintext">
 -1
 slice : 0 , value : ff
 slice : 1 , value : ff
@@ -47,7 +49,7 @@ p_x  ---&gt;   1111 1111
         So Above output is prove that negative numbers are stored in memory in 2's complement form but not tell about "how the order of the bits are?"
     </p>
 
-    <pre><code class="language-markup">
+    <pre><code class="plaintext">
 -3
 slice : 0 , value : fd
 slice : 1 , value : ff
@@ -60,6 +62,8 @@ p_x  ---&gt;   1111 1101
             1111 1111
         </code></pre>
 
+<code-fence lang="js" heading="Source Code"></code-fence>
+
     <p>If You see above output You can see higher bit of -3 is at higher address and lower bit of address 3 is at lower address how you represent -3 in 64-bin machine?</p>
 <pre><code class="language-markup"> 11111111 11111111 11111111 11111101 </code></pre>
 
@@ -69,9 +73,7 @@ p_x  ---&gt;   1111 1101
     <p>If you want to learn more about this checkout wikipedia link <a href="https://en.wikipedia.org/wiki/Endianness">here</a>.</p>
     <p>I also asked this as question before i don't know about this which you can see <a href="https://stackoverflow.com/questions/65858166/how-does-c-language-store-int-in-memory"> here </a>.</p>
 
-    <!-- <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
-	<script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script> -->
-    <script src="./node_modules/prismjs/components/prism-core.js"></script>
-    <script src="./node_modules/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script defer type="text/javascript" src="//codefence.io/codefence.js"></script>
+    <script>hljs.highlightAll();</script>
 </body>
 </html>
