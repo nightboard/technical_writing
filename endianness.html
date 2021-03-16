@@ -6,13 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="//codefence.io/codefence.css" rel="stylesheet">
+
+    <style>
+        .plaintext {
+            background-color: rgb(31,36,48);
+        }
+    </style>
     <title>Endianness</title>
 </head>
 <body class="bg-dark text-white">
 
     <h1>Endianness</h1>
 
-    <pre><code-fence lang="c">
+    <pre><code-fence lang="c" heading="Source Code">
 <textarea vue-slot="code">
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
@@ -32,7 +38,7 @@ int main() {
         </code-fence></pre>
 
     <h2>Output</h2>
-    <pre><code class="plaintext">
+    <pre class="plaintext"><code>
 -1
 slice : 0 , value : ff
 slice : 1 , value : ff
@@ -49,7 +55,7 @@ p_x  ---&gt;   1111 1111
         So Above output is prove that negative numbers are stored in memory in 2's complement form but not tell about "how the order of the bits are?"
     </p>
 
-    <pre><code class="plaintext">
+    <pre class="plaintext"><code>
 -3
 slice : 0 , value : fd
 slice : 1 , value : ff
@@ -62,10 +68,8 @@ p_x  ---&gt;   1111 1101
             1111 1111
         </code></pre>
 
-<code-fence lang="js" heading="Source Code"></code-fence>
-
     <p>If You see above output You can see higher bit of -3 is at higher address and lower bit of address 3 is at lower address how you represent -3 in 64-bin machine?</p>
-<pre><code class="language-markup"> 11111111 11111111 11111111 11111101 </code></pre>
+<pre class="plaintext"><code> 11111111 11111111 11111111 11111101 </code></pre>
 
     <p>Actually this is called called low-endian encoding.</p>
     <p>And most of the intel processors follow this rule called littel endian and that is lower bit stored at lower address and higher bit stored at higher address.</p>
